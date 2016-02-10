@@ -17,6 +17,10 @@ public class Application {
         
         Di di = new Di();
         
+        /**
+         * Register data repositories
+         */
+
         di.mapSingleton("storage", RepositoryMemoryStorage.class);
         
         di.mapSingleton("repository.companies", di1 -> new CompanyRepository(
@@ -27,10 +31,18 @@ public class Application {
                 di1.get("storage").as(RepositoryStorage.class)
         ));
         
+        
+        /**
+         * Create router
+         */
         RouterPreferences routePreferences = new RouterPreferences();
         Router router = new Router(di, routePreferences);
         di.mapValue("router", router);
         
+        
+        /**
+         * Register facade routes
+         */
         router.facade("/users", new UsersFacade());
         router.facade("/companies", new CompanyFacade());
     }
