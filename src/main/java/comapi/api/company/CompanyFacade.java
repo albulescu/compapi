@@ -55,9 +55,20 @@ public class CompanyFacade extends Facade {
         };
     }
     
+
+    protected Route getCompaniesHandler() {
+        return new Route() {
+            @Override
+            public Object handle(Request request, Response response) throws Exception {
+                return repository().getAll();
+            }
+        };
+    }
+    
     @Override
     public void init(FacadeRouter router) {
         router.post("/", getCompanyCreateHandler());
+        router.get("/", getCompaniesHandler());
         router.get("/:id", getCompanyViewHandler());
     }
 }
