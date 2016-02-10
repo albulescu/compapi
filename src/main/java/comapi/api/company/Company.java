@@ -1,6 +1,5 @@
 package comapi.api.company;
 
-import comapi.repository.DtoProperty;
 import comapi.repository.Entity;
 
 public class Company extends Entity {
@@ -15,7 +14,6 @@ public class Company extends Entity {
     /**
      * @return the name
      */
-    @DtoProperty("name")
     public String getName() {
         return name;
     }

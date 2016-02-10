@@ -1,25 +1,28 @@
-package comapi;
+package comapi.routing;
 
+import comapi.JsonTransformer;
 import spark.ResponseTransformer;
 
-public class Preferences {
+public class RouterPreferences {
     
-    private String acceptType = "application/json";
+    private String prefix = "/v1";
+    
+    private String defaultAcceptType = "application/json";
     
     private ResponseTransformer responseTransformer = new JsonTransformer();
 
     /**
      * @return the acceptType
      */
-    public String getAcceptType() {
-        return acceptType;
+    public String getDefaultAcceptType() {
+        return defaultAcceptType;
     }
 
     /**
      * @param acceptType the acceptType to set
      */
-    public void setAcceptType(String acceptType) {
-        this.acceptType = acceptType;
+    public void setDefaultAcceptType(String acceptType) {
+        this.defaultAcceptType = acceptType;
     }
 
     /**
@@ -34,5 +37,19 @@ public class Preferences {
      */
     public void setResponseTransformer(ResponseTransformer responseTransformer) {
         this.responseTransformer = responseTransformer;
+    }
+
+    /**
+     * @return the prefix
+     */
+    public String getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * @param prefix the prefix to set
+     */
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }

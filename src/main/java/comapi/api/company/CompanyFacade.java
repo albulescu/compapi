@@ -1,24 +1,20 @@
 package comapi.api.company;
 
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 import comapi.Di;
 import comapi.Facade;
-import comapi.Preferences;
+import comapi.routing.FacadeRouter;
+import comapi.routing.Router;
+import comapi.routing.RouterPreferences;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class CompanyFacade implements Facade {
-    
-    private Di di;
-    
-    public CompanyFacade( Di di ) {
-        this.di = di;
-    }
+public class CompanyFacade extends Facade {
     
     private CompanyRepository repository() {
-        return di.get("companies").as(CompanyRepository.class);
+        return getDi().get("companies").as(CompanyRepository.class);
     }
     
     protected Route getCompanyCreateHandler() {
@@ -41,8 +37,9 @@ public class CompanyFacade implements Facade {
         };
     }
     
-    public void init( Preferences prefs ) {
-        get("/create", prefs.getAcceptType(), getCompanyCreateHandler(), prefs.getResponseTransformer());
-        get("/view/:id", prefs.getAcceptType(), getCompanyViewHandler(), prefs.getResponseTransformer());
+    @Override
+    public void init(FacadeRouter router) {
+        router.get("/", getCompanyCreateHandler());
+        router.get("/:id", getCompanyViewHandler());
     }
 }

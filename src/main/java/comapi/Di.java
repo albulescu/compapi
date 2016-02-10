@@ -1,8 +1,11 @@
 package comapi;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Di {
+    
+    private static Logger log = Logger.getLogger("DI");
     
     private HashMap<String, Class<?>> singletones;
     private HashMap<String, Factory<?>> factories;
@@ -51,11 +54,26 @@ public class Di {
     }
     
     public boolean mapValue(String name, Object value) {
+
         if(!nameIsValid(name)) {
             return false;
         }
-        values.put(name, value);
+
+        values.put(name, prepare(value));
+        
         return true;
+    }
+
+    /**
+     * @param value
+     */
+    private Object prepare(Object value) {
+        
+        if( value instanceof DiAware && ((DiAware) value).getDi() == null ) {
+            ((DiAware) value).setDi(this);
+        }
+        
+        return value;
     }
     
     public String getString(String name) {
@@ -68,29 +86,35 @@ public class Di {
     
     public Value get(String name) {
         
+        Object value;
+        
         if(values.containsKey(name)) {
            return new Value(values.get(name)); 
         }
         
         if(factories.containsKey(name)) {
-            return new Value( factories.get(name).create(this) );
+            return new Value(
+                    prepare( factories.get(name).create(this) )
+            );
         }
         
         if(singletones.containsKey(name)) {
             
             try {
-                values.put(name, singletones.get(name).newInstance());
-                return get(name);
+                value = singletones.get(name).newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+                return null;
             }
             
-            return null;
+            values.put(name, prepare(value));
+            
+            return new Value(value);
         }
 
-        if(singletonesFactories.containsKey(name)) {
-            values.put(name, singletonesFactories.get(name).create(this));
-            return get(name);
+        if( singletonesFactories.containsKey(name) ) {
+            value = singletonesFactories.get(name).create(this);
+            values.put(name, prepare(value));
+            return new Value(value);
         }
         
         return null;
@@ -112,7 +136,7 @@ public class Di {
             return value;
         }
         
-        @SuppressWarnings({ "unchecked", "unused" })
+        @SuppressWarnings({ "unchecked" })
         public final <T> T as(final Class<T> clazz) {
             return (T) value;
         }

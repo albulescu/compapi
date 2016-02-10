@@ -4,15 +4,14 @@ import comapi.api.company.CompanyFacade;
 import comapi.api.company.CompanyRepository;
 import comapi.repository.RepositoryMemoryStorage;
 import comapi.repository.RepositoryStorage;
+import comapi.routing.Router;
+import comapi.routing.RouterPreferences;
+import compapi.api.users.UsersFacade;
 
 public class Application {
 
-    static Preferences prefs = new Preferences();
+    static RouterPreferences prefs = new RouterPreferences();
     
-    private static void mapFacade(Facade facade) { 
-        facade.init(prefs);
-    }
-
     public static void load() throws Exception {
         
         Di di = new Di();
@@ -23,6 +22,11 @@ public class Application {
                 di1.get("storage").as(RepositoryStorage.class)
         ));
         
-        mapFacade(new CompanyFacade(di));
+        RouterPreferences routePreferences = new RouterPreferences();
+        Router router = new Router(di, routePreferences);
+        di.mapValue("router", router);
+        
+        router.facade("/users", new UsersFacade());
+        router.facade("/companies", new CompanyFacade());
     }
 }
