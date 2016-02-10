@@ -1,12 +1,13 @@
 package comapi.api.company;
-
 import static spark.Spark.*;
 
-import comapi.Di;
+import java.util.List;
+
 import comapi.Facade;
+import comapi.exception.ValidationException;
 import comapi.routing.FacadeRouter;
-import comapi.routing.Router;
-import comapi.routing.RouterPreferences;
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -21,7 +22,16 @@ public class CompanyFacade extends Facade {
         return new Route() {
             @Override
             public Object handle(Request request, Response response) throws Exception {
-                Company company = new Company("My Company");
+                Company company = new Company();
+                company.fromJson(request.body());
+                
+                Validator validator = new Validator();
+                List<ConstraintViolation> violations = validator.validate(company);
+                
+                if( violations.size() > 0 ) {
+                    ValidationException.throwViolations(violations);
+                }
+                
                 repository().addCompany(company);
                 return company;
             }
@@ -32,14 +42,22 @@ public class CompanyFacade extends Facade {
         return new Route() {
             @Override
             public Object handle(Request request, Response response) throws Exception {
-                return repository().getCompany(Integer.parseInt(request.params("id")));
+                
+                int id = Integer.parseInt(request.params("id"));
+                Company company = repository().getCompany(id);
+                
+                if( company == null ) {
+                    halt(404,"Company not found");
+                }
+                
+                return company;
             }
         };
     }
     
     @Override
     public void init(FacadeRouter router) {
-        router.get("/", getCompanyCreateHandler());
+        router.post("/", getCompanyCreateHandler());
         router.get("/:id", getCompanyViewHandler());
     }
 }

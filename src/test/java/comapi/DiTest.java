@@ -20,7 +20,13 @@ public class DiTest {
     @Test
     public void testShoudCreateNewInstance() {
         Di di = new Di();
-        di.mapFactory("test", di1 -> new Entity());
+        di.mapFactory("test", new Di.Factory() {
+            @Override
+            public Object create(Di di) {
+                return new Entity();
+            }
+        });
+        
         Entity a = di.get("test").as(Entity.class);
         Entity b = di.get("test").as(Entity.class);
         assertNotSame(a, b);

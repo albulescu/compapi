@@ -16,5 +16,10 @@
 			<version>2.5</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>1.85</version>
+		</dependency>
 	</dependencies>
 </project>

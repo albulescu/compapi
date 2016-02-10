@@ -1,4 +1,4 @@
-package comapi;
+package comapi.routing;
 
 import com.google.gson.Gson;
 

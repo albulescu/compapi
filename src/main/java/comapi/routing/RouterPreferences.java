@@ -1,6 +1,5 @@
 package comapi.routing;
 
-import comapi.JsonTransformer;
 import spark.ResponseTransformer;
 
 public class RouterPreferences {

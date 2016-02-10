@@ -10,11 +10,11 @@ public class RepositoryMemoryStorageTest {
     public void testCanAddEntity() {
         RepositoryMemoryStorage storage = new RepositoryMemoryStorage();
         Entity entity = new Entity();
-        assertEquals(null, entity.getId());
+        assertEquals(null, entity.id);
         storage.set(entity);
-        assertEquals("0", entity.getId());
+        assertEquals("0", entity.id);
         storage.set(new Entity());
-        assertEquals("1", storage.get("1").getId());
+        assertEquals("1", storage.get("1").id);
     }
 
 }

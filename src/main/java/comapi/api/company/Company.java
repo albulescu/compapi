@@ -1,27 +1,35 @@
 package comapi.api.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import comapi.repository.Entity;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
 
 public class Company extends Entity {
 
-    private String name;
+    @NotNull
+    @NotEmpty
+    public String name;
     
-    public Company(String name) {
-        super();
-        this.name = name;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotNull
+    @NotEmpty
+    public String address;
+    
+    @NotNull
+    @NotEmpty
+    public String city;
+    
+    @NotNull
+    @NotEmpty
+    public String country;
+    
+    @NotEmpty
+    public String email;
+    
+    @NotEmpty
+    public String phone;
+    
+    public List<Employee> employees = new ArrayList<Employee>();
 }

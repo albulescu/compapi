@@ -14,15 +14,15 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     @Override
     public void set(Entity data) {
         
-        if( data.getId() == null ) {
-            data.setId(storage.size() + "");
+        if( data.id == null ) {
+            data.id = storage.size() + "";
             storage.add(data);
             return;
         }
         
         int position = 0;
         for(Entity e : storage) {
-            if( e.getId().equals(data.getId()) ) {
+            if( e.id != null && e.id.equals(data.id) ) {
                 storage.set(position, data);
             }
             position++;
@@ -32,7 +32,7 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     @Override
     public Entity get(String id) {
         for(Entity e : storage) {
-            if( e.getId().equals(id) ) {
+            if( e.id != null && e.id.equals(id) ) {
                 return e;
             }
         }
