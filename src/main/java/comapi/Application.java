@@ -7,6 +7,7 @@ import comapi.repository.RepositoryStorage;
 import comapi.routing.Router;
 import comapi.routing.RouterPreferences;
 import compapi.api.users.UsersFacade;
+import compapi.api.users.UsersRepository;
 
 public class Application {
 
@@ -18,7 +19,11 @@ public class Application {
         
         di.mapSingleton("storage", RepositoryMemoryStorage.class);
         
-        di.mapSingleton("companies", di1 -> new CompanyRepository(
+        di.mapSingleton("repository.companies", di1 -> new CompanyRepository(
+                di1.get("storage").as(RepositoryStorage.class)
+        ));
+
+        di.mapSingleton("repository.users", di1 -> new UsersRepository(
                 di1.get("storage").as(RepositoryStorage.class)
         ));
         

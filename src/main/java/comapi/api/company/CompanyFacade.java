@@ -15,7 +15,7 @@ import spark.Route;
 public class CompanyFacade extends Facade {
     
     private CompanyRepository repository() {
-        return getDi().get("companies").as(CompanyRepository.class);
+        return getDi().get("repository.companies").as(CompanyRepository.class);
     }
     
     protected Route getCompanyCreateHandler() {
