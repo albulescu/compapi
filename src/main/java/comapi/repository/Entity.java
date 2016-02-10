@@ -13,7 +13,6 @@ public class Entity {
     /**
      * @return the id
      */
-    @DtoProperty("id")
     public String getId() {
         return id;
     }
