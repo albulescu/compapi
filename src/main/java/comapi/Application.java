@@ -9,6 +9,9 @@ import comapi.repository.RepositoryStorage;
 import comapi.routing.Router;
 import comapi.routing.RouterPreferences;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public class Application {
 
     static RouterPreferences prefs = new RouterPreferences();

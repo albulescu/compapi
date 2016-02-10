@@ -2,7 +2,10 @@ package comapi.routing;
 
 import spark.Route;
 
-public interface RouterVerbs {
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
+public interface HttpVerbs {
     public void get(String path, Route route);
     public void post(String path, Route route);
     public void delete(String path, Route route);

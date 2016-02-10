@@ -7,34 +7,44 @@ import comapi.Facade;
 import spark.Route;
 import spark.Spark;
 
-public class Router implements RouterVerbs {
-    
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
+public class Router implements HttpVerbs {
+
     Di di;
     RouterPreferences preferences;
-    
+
     public Router(Di di, RouterPreferences preferences) {
         this.di = di;
         this.preferences = preferences;
     }
-    
-    public void facade( String prefix, Facade facade ) {
+
+    /**
+     * Composite routes register using facades
+     * @param prefix
+     * @param facade
+     */
+    public void facade(String prefix, Facade facade) {
         facade.setDi(di);
         facade.init(new FacadeRouter(prefix, this));
     }
 
     private String path(String base) {
-        
-        if( base.subSequence(base.length() - 1, base.length()).equals("/")) {
+
+        if (base.subSequence(base.length() - 1, base.length()).equals("/")) {
             base = base.substring(0, base.length() - 1);
         }
-        
+
         Logger log = Logger.getLogger("Router");
         log.info("Map route -> " + base);
-        
+
         return preferences.getPrefix() + base;
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#get(java.lang.String, spark.Route)
      */
     @Override
@@ -42,7 +52,9 @@ public class Router implements RouterVerbs {
         Spark.get(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#post(java.lang.String, spark.Route)
      */
     @Override
@@ -50,7 +62,9 @@ public class Router implements RouterVerbs {
         Spark.post(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#delete(java.lang.String, spark.Route)
      */
     @Override
@@ -58,7 +72,9 @@ public class Router implements RouterVerbs {
         Spark.delete(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#put(java.lang.String, spark.Route)
      */
     @Override
@@ -66,7 +82,9 @@ public class Router implements RouterVerbs {
         Spark.put(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#patch(java.lang.String, spark.Route)
      */
     @Override
@@ -74,7 +92,9 @@ public class Router implements RouterVerbs {
         Spark.patch(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#head(java.lang.String, spark.Route)
      */
     @Override
@@ -82,7 +102,9 @@ public class Router implements RouterVerbs {
         Spark.head(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#trace(java.lang.String, spark.Route)
      */
     @Override
@@ -90,7 +112,9 @@ public class Router implements RouterVerbs {
         Spark.trace(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#connect(java.lang.String, spark.Route)
      */
     @Override
@@ -98,7 +122,9 @@ public class Router implements RouterVerbs {
         Spark.connect(path(path), preferences.getDefaultAcceptType(), route, preferences.getResponseTransformer());
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#options(java.lang.String, spark.Route)
      */
     @Override

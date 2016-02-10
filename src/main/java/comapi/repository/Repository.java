@@ -1,10 +1,13 @@
 package comapi.repository;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public class Repository {
-    
+
     RepositoryStorage storage;
-    
-    public Repository( RepositoryStorage storage ) {
+
+    public Repository(RepositoryStorage storage) {
         this.storage = storage;
     }
 

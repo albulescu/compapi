@@ -1,4 +1,5 @@
 package comapi.api.company;
+
 import static spark.Spark.*;
 
 import java.util.List;
@@ -12,49 +13,51 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public class CompanyFacade extends Facade {
-    
+
     private CompanyRepository repository() {
         return getDi().get("repository.companies").as(CompanyRepository.class);
     }
-    
+
     protected Route getCompanyCreateHandler() {
         return new Route() {
             @Override
             public Object handle(Request request, Response response) throws Exception {
                 Company company = new Company();
                 company.fromJson(request.body());
-                
+
                 Validator validator = new Validator();
                 List<ConstraintViolation> violations = validator.validate(company);
-                
-                if( violations.size() > 0 ) {
+
+                if (violations.size() > 0) {
                     ValidationException.throwViolations(violations);
                 }
-                
+
                 repository().addCompany(company);
                 return company;
             }
         };
     }
-    
+
     protected Route getCompanyViewHandler() {
         return new Route() {
             @Override
             public Object handle(Request request, Response response) throws Exception {
-                
+
                 int id = Integer.parseInt(request.params("id"));
                 Company company = repository().getCompany(id);
-                
-                if( company == null ) {
-                    halt(404,"Company not found");
+
+                if (company == null) {
+                    halt(404, "Company not found");
                 }
-                
+
                 return company;
             }
         };
     }
-    
 
     protected Route getCompaniesHandler() {
         return new Route() {
@@ -64,7 +67,7 @@ public class CompanyFacade extends Facade {
             }
         };
     }
-    
+
     @Override
     public void init(FacadeRouter router) {
         router.post("/", getCompanyCreateHandler());

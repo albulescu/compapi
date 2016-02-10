@@ -2,16 +2,21 @@ package comapi;
 
 import comapi.routing.FacadeRouter;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public abstract class Facade implements DiAware {
 
     private Di di;
-    
+
     /**
      * Initialize api facade
      */
-    public abstract void init( FacadeRouter router );
+    public abstract void init(FacadeRouter router);
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.DiAware#setDi(comapi.Di)
      */
     @Override
@@ -19,7 +24,9 @@ public abstract class Facade implements DiAware {
         this.di = di;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.DiAware#getDi()
      */
     @Override

@@ -7,6 +7,9 @@ import comapi.repository.Entity;
 import comapi.repository.Repository;
 import comapi.repository.RepositoryStorage;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public class CompanyRepository extends Repository {
 
     public CompanyRepository(RepositoryStorage storage) {
@@ -15,17 +18,17 @@ public class CompanyRepository extends Repository {
 
     public List<Company> getAll() {
         List<Company> items = new ArrayList<Company>();
-        for(Entity e : getStorage().all()) {
+        for (Entity e : getStorage().all()) {
             items.add((Company) e);
         }
         return items;
     }
-    
+
     public void addCompany(Company company) {
         getStorage().set(company);
     }
-    
+
     public Company getCompany(int id) {
-        return (Company) getStorage().get( id + "" );
+        return (Company) getStorage().get(id + "");
     }
 }

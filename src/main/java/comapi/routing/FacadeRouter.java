@@ -2,17 +2,22 @@ package comapi.routing;
 
 import spark.Route;
 
-public class FacadeRouter implements RouterVerbs {
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
+public class FacadeRouter implements HttpVerbs {
 
     private String prefix;
     private Router router;
-    
+
     public FacadeRouter(String prefix, Router router) {
         this.prefix = prefix;
         this.router = router;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#get(java.lang.String, spark.Route)
      */
     @Override
@@ -20,7 +25,9 @@ public class FacadeRouter implements RouterVerbs {
         router.get(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#post(java.lang.String, spark.Route)
      */
     @Override
@@ -28,7 +35,9 @@ public class FacadeRouter implements RouterVerbs {
         router.post(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#delete(java.lang.String, spark.Route)
      */
     @Override
@@ -36,7 +45,9 @@ public class FacadeRouter implements RouterVerbs {
         router.delete(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#put(java.lang.String, spark.Route)
      */
     @Override
@@ -44,7 +55,9 @@ public class FacadeRouter implements RouterVerbs {
         router.put(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#patch(java.lang.String, spark.Route)
      */
     @Override
@@ -52,7 +65,9 @@ public class FacadeRouter implements RouterVerbs {
         router.patch(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#head(java.lang.String, spark.Route)
      */
     @Override
@@ -60,7 +75,9 @@ public class FacadeRouter implements RouterVerbs {
         router.head(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#trace(java.lang.String, spark.Route)
      */
     @Override
@@ -68,7 +85,9 @@ public class FacadeRouter implements RouterVerbs {
         router.trace(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#connect(java.lang.String, spark.Route)
      */
     @Override
@@ -76,7 +95,9 @@ public class FacadeRouter implements RouterVerbs {
         router.connect(prefix + path, route);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see comapi.routing.RouterVerbs#options(java.lang.String, spark.Route)
      */
     @Override

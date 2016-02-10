@@ -11,6 +11,9 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * @author Cosmin Albulescu <cosmin@albulescu.ro>
+ */
 public class UsersFacade extends Facade {
 
     @Override
@@ -18,11 +21,11 @@ public class UsersFacade extends Facade {
         router.post("/", getCreateUserHandler());
         router.get("/", getListUsersHandler());
     }
-    
+
     private UsersRepository repository() {
         return getDi().get("repository.users").as(UsersRepository.class);
     }
-    
+
     private Route getListUsersHandler() {
         return new Route() {
             @Override
@@ -38,14 +41,14 @@ public class UsersFacade extends Facade {
             public Object handle(Request request, Response response) throws Exception {
                 User user = new User();
                 user.fromJson(request.body());
-                
+
                 Validator validator = new Validator();
                 List<ConstraintViolation> violations = validator.validate(user);
-                
-                if( violations.size() > 0 ) {
+
+                if (violations.size() > 0) {
                     ValidationException.throwViolations(violations);
                 }
-                
+
                 repository().addUser(user);
                 return user;
             }
