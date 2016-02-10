@@ -1,7 +1,10 @@
 package comapi.repository;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class RepositoryMemoryStorage implements RepositoryStorage {
 
@@ -10,7 +13,27 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     public RepositoryMemoryStorage() {
         storage = new ArrayList<Entity>();
     }
-    
+
+    @Override
+    public List<Entity> find(EntityQuery query) {
+        
+        List<Entity> results = new ArrayList<Entity>();
+        
+        for(Entity e : storage) {
+            for (Entry<String, String> term : query.getTerms().entrySet()) {
+                try {
+                    Field field = e.getClass().getDeclaredField(term.getKey());
+                    if( field.get(e).equals(term.getValue()) ) {
+                        results.add(e);
+                    }
+                }
+                catch (Exception e1) {}
+            }
+        }
+        
+        return results;
+    }
+
     @Override
     public void set(Entity data) {
         

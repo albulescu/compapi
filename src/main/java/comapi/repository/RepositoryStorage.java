@@ -1,10 +1,11 @@
 package comapi.repository;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface RepositoryStorage {
 
+    public List<Entity> find(EntityQuery query);
+    
     public void set(Entity data);
 
     public Entity get(String id);
