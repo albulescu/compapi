@@ -1,4 +1,4 @@
-package compapi.api.users;
+package comapi.api.users;
 
 import java.util.List;
 

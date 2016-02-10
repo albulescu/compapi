@@ -2,12 +2,12 @@ package comapi;
 
 import comapi.api.company.CompanyFacade;
 import comapi.api.company.CompanyRepository;
+import comapi.api.users.UsersFacade;
+import comapi.api.users.UsersRepository;
 import comapi.repository.RepositoryMemoryStorage;
 import comapi.repository.RepositoryStorage;
 import comapi.routing.Router;
 import comapi.routing.RouterPreferences;
-import compapi.api.users.UsersFacade;
-import compapi.api.users.UsersRepository;
 
 public class Application {
 

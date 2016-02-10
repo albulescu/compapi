@@ -1,4 +1,4 @@
-package compapi.api.users;
+package comapi.api.users;
 
 import comapi.repository.Entity;
 import net.sf.oval.constraint.NotEmpty;
