@@ -11,6 +11,7 @@ import comapi.repository.RepositoryStorage;
 import comapi.routing.Router;
 import comapi.routing.RouterPreferences;
 import comapi.Di.Factory;
+import spark.Spark;
 
 /**
  * @author Cosmin Albulescu <cosmin@albulescu.ro>
@@ -77,5 +78,11 @@ public class Application {
         router.facade("/users", new UsersFacade());
         router.facade("/companies", new CompanyFacade());
         router.facade("/employees", new EmployeeFacade());
+        
+        String port = System.getenv("PORT");
+        
+        if( port != null ) {
+            Spark.port( Integer.parseInt(port) );
+        }
     }
 }
