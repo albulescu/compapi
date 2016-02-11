@@ -1,1 +1,1 @@
-web:    java -cp "target/dependency/*":target/classes comapi.EntryPoint
+web:    java -DPORT=$PORT -cp "target/dependency/*":target/classes comapi.EntryPoint
