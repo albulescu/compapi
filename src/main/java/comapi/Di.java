@@ -10,8 +10,6 @@ import java.util.logging.Logger;
  */
 public class Di {
 
-    private static Logger log = Logger.getLogger("DI");
-
     private HashMap<String, Class<?>> singletones;
     private HashMap<String, Factory<?>> factories;
     private HashMap<String, Factory<?>> singletonesFactories;
@@ -103,7 +101,7 @@ public class Di {
 
             try {
                 value = singletones.get(name).newInstance();
-            } catch (InstantiationException | IllegalAccessException e) {
+            } catch (Exception e) {
                 return null;
             }
 
