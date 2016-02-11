@@ -19,14 +19,18 @@ import spark.Spark;
 public class Application {
 
     static RouterPreferences prefs = new RouterPreferences();
+ 
+    static int getPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567;
+    }
     
     public static void load() throws Exception {
         
-        String port = System.getenv("PORT");
-        
-        if( port != null ) {
-            Spark.port( Integer.parseInt(port) );
-        }
+        Spark.port( getPort() );
         
         Di di = new Di();
         
