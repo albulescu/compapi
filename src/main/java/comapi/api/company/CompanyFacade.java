@@ -19,7 +19,15 @@ import spark.Route;
  * @author Cosmin Albulescu <cosmin@albulescu.ro>
  */
 public class CompanyFacade extends Facade {
-
+    
+    @Override
+    public void init(FacadeRouter router) {
+        router.post("/", getCompanyCreateHandler());
+        router.get("/", getCompaniesHandler());
+        router.get("/:id", getCompanyViewHandler());
+        router.put("/:id", getCompanyUpdateHandler());
+    }
+    
     private CompanyRepository repository() {
         return getDi().get("repository.companies").as(CompanyRepository.class);
     }
@@ -96,13 +104,4 @@ public class CompanyFacade extends Facade {
             }
         };
     }
-    
-    @Override
-    public void init(FacadeRouter router) {
-        router.post("/", getCompanyCreateHandler());
-        router.get("/", getCompaniesHandler());
-        router.get("/:id", getCompanyViewHandler());
-        router.put("/:id", getCompanyUpdateHandler());
-    }
-
 }
