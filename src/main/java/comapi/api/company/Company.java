@@ -3,6 +3,7 @@ package comapi.api.company;
 import java.util.ArrayList;
 import java.util.List;
 
+import comapi.api.employee.Employee;
 import comapi.repository.Entity;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;

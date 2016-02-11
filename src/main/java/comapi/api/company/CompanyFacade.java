@@ -47,8 +47,7 @@ public class CompanyFacade extends Facade {
             @Override
             public Object handle(Request request, Response response) throws Exception {
 
-                int id = Integer.parseInt(request.params("id"));
-                Company company = repository().getCompany(id);
+                Company company = repository().getCompany(request.params("id"));
 
                 if (company == null) {
                     halt(404, "Company not found");

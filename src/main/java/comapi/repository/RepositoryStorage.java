@@ -14,7 +14,14 @@ public interface RepositoryStorage {
      * @return
      */
     public List<Entity> find(EntityQuery query);
-
+    
+    /**
+     * Find one entity
+     * @param query
+     * @return
+     */
+    public Entity findOne(EntityQuery query);
+    
     /**
      * Store new entity or update
      * 
@@ -60,4 +67,16 @@ public interface RepositoryStorage {
      * @return
      */
     public int count();
+    
+    /**
+     * Name of this storage bag
+     * @return
+     */
+    public void setName(String name);
+    
+    /**
+     * Name of this storage bag
+     * @return
+     */
+    public String getName();
 }

@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>586E9B91-EB98-4BC5-89DA-71CE86F26E72</UUID>
-        <nextObjectID>116</nextObjectID>
+        <nextObjectID>120</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -194,5 +194,57 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z115"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z117">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z119"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z118">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z120"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z119">
+        <attribute name="uuid" type="string">968D70E5-1827-4F18-A11B-5BE930ADED1C</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"F58E3727-3E5F-4AA0-A81F-2E2812B3EA75"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/employees"]</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">GET</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">["{\\n\\t\\"name\\":\\"Cosmin Albulescu\\",\\n\\t\\"email\\":\\"cosmin@albulescu.ro\\"\\n}"]</attribute>
+        <attribute name="order" type="int64">4</attribute>
+        <attribute name="name" type="string">Get Employees</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z117"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z120">
+        <attribute name="uuid" type="string">C418C705-45D8-41D2-A46B-9D4E7773F193</attribute>
+        <attribute name="url" type="string">[{"data":{"environmentVariable":"F58E3727-3E5F-4AA0-A81F-2E2812B3EA75"},"identifier":"com.luckymarmot.EnvironmentVariableDynamicValue"},"\\/employees"]</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">["{\\n\\t\\"company\\":\\"1\\",\\n\\t\\"user\\":\\"1\\",\\n\\t\\"role\\":\\"GENERIC\\"\\n}"]</attribute>
+        <attribute name="order" type="int64">5</attribute>
+        <attribute name="name" type="string">Post Employees</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z118"></relationship>
     </object>
 </database>

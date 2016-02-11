@@ -10,10 +10,40 @@ import java.util.Map.Entry;
  */
 public class RepositoryMemoryStorage implements RepositoryStorage {
 
+    String name;
     private List<Entity> storage;
 
     public RepositoryMemoryStorage() {
         storage = new ArrayList<Entity>();
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see comapi.repository.RepositoryStorage#findOne(comapi.repository.
+     * EntityQuery)
+     */
+    @Override
+    public Entity findOne(EntityQuery query) {
+        for (Entity e : storage) {
+            
+            int count=0;
+            
+            for (Entry<String, String> term : query.getTerms().entrySet()) {
+                try {
+                    Field field = e.getClass().getDeclaredField(term.getKey());
+                    if (field.get(e).equals(term.getValue())) {
+                        count++;
+                    }
+                } catch (Exception ex) {
+                }
+            }
+            
+            if( count == query.getTerms().size() ) {
+                return e;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -22,14 +52,18 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
         List<Entity> results = new ArrayList<Entity>();
 
         for (Entity e : storage) {
+            int count = 0;
             for (Entry<String, String> term : query.getTerms().entrySet()) {
                 try {
                     Field field = e.getClass().getDeclaredField(term.getKey());
                     if (field.get(e).equals(term.getValue())) {
-                        results.add(e);
+                        count++;
                     }
-                } catch (Exception e1) {
+                } catch (Exception ex) {
                 }
+            }
+            if( count == query.getTerms().size() ) {
+                results.add(e);
             }
         }
 
@@ -102,5 +136,24 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     @Override
     public int count() {
         return storage.size();
+    }
+    
+
+    /* (non-Javadoc)
+     * @see comapi.repository.RepositoryStorage#setName(java.lang.String)
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+
+    /* (non-Javadoc)
+     * @see comapi.repository.RepositoryStorage#getName()
+     */
+    @Override
+    public String getName() {
+        return name;
     }
 }

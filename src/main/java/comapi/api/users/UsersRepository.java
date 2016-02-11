@@ -29,6 +29,10 @@ public class UsersRepository extends Repository {
         return null;
     }
     
+    public User getUser(String id) {
+        return (User) getStorage().get(id);
+    }
+    
     public List<User> getAll() {
         List<User> items = new ArrayList<User>();
         for (Entity e : getStorage().all()) {
