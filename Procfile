@@ -1,1 +1,1 @@
-web: java -cp "target/dependency/*":target/classes comapi.EntryPoint
+web: java $JAVA_OPTS -cp "target/dependency/*":target/classes comapi.EntryPoint
