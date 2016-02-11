@@ -22,6 +22,12 @@ public class Application {
     
     public static void load() throws Exception {
         
+        String port = System.getenv("PORT");
+        
+        if( port != null ) {
+            Spark.port( Integer.parseInt(port) );
+        }
+        
         Di di = new Di();
         
         /**
@@ -78,11 +84,5 @@ public class Application {
         router.facade("/users", new UsersFacade());
         router.facade("/companies", new CompanyFacade());
         router.facade("/employees", new EmployeeFacade());
-        
-        String port = System.getenv("PORT");
-        
-        if( port != null ) {
-            Spark.port( Integer.parseInt(port) );
-        }
     }
 }
