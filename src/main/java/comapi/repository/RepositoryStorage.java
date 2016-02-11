@@ -27,7 +27,7 @@ public interface RepositoryStorage {
      * 
      * @param data
      */
-    public void set(Entity data);
+    public void save(Entity data);
 
     /**
      * Get an entity

@@ -71,7 +71,7 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     }
 
     @Override
-    public void set(Entity data) {
+    public void save(Entity data) {
 
         if (data.id == null) {
             data.id = storage.size() + 1 + "";
@@ -81,7 +81,9 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
 
         int position = 0;
         for (Entity e : storage) {
-            if (e.id != null && e.id.equals(data.id)) {
+            if ( e.id != null && e.id.equals(data.id) ) {
+                //make sure id is not changed
+                data.id = e.id;
                 storage.set(position, data);
             }
             position++;

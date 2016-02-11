@@ -18,6 +18,11 @@ public class CompanyRepository extends Repository {
     }
 
     private Company populate(Company company) {
+        
+        if( company == null ) {
+            return company;
+        }
+        
         EmployeeRepository employees = getDi().get("repository.employees").as(EmployeeRepository.class);
         company.employees = employees.getEmployees(company);
         return company;
@@ -32,10 +37,14 @@ public class CompanyRepository extends Repository {
     }
 
     public void addCompany(Company company) {
-        getStorage().set(company);
+        getStorage().save(company);
     }
 
     public Company getCompany(String company) {
         return populate((Company) getStorage().get(company));
+    }
+
+    public void updateCompany(Company company) {
+        getStorage().save(company);
     }
 }

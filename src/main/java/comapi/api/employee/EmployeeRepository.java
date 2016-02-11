@@ -21,7 +21,7 @@ public class EmployeeRepository extends Repository {
     }
 
     public void addEmployee(Employee employee) {
-        getStorage().set(employee);
+        getStorage().save(employee);
     }
     
     public List<Employee> getEmployees(Company company) {

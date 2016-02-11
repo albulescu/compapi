@@ -42,6 +42,6 @@ public class UsersRepository extends Repository {
     }
 
     public void addUser(User user) {
-        getStorage().set(user);
+        getStorage().save(user);
     }
 }

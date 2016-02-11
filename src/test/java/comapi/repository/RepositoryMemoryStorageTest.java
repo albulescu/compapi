@@ -11,9 +11,9 @@ public class RepositoryMemoryStorageTest {
         RepositoryMemoryStorage storage = new RepositoryMemoryStorage();
         Entity entity = new Entity();
         assertEquals(null, entity.id);
-        storage.set(entity);
+        storage.save(entity);
         assertEquals("0", entity.id);
-        storage.set(new Entity());
+        storage.save(new Entity());
         assertEquals("1", storage.get("1").id);
     }
 

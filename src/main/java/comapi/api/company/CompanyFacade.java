@@ -4,6 +4,8 @@ import static spark.Spark.*;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import comapi.Facade;
 import comapi.exception.ValidationException;
 import comapi.routing.FacadeRouter;
@@ -67,10 +69,40 @@ public class CompanyFacade extends Facade {
         };
     }
 
+    private Route getCompanyUpdateHandler() {
+        return new Route() {
+            @Override
+            public Object handle(Request request, Response response) throws Exception {
+                Gson gson = new Gson();
+                CompanyUpdatePayload updatePayload = gson.fromJson(request.body(), CompanyUpdatePayload.class);
+                
+                if(!updatePayload.isValid()) {
+                    halt(400, "Invalid update payload");
+                }
+                
+                Company company = repository().getCompany( request.params("id") );
+                
+                if( company == null ) {
+                    halt(404, "Company not found");
+                }
+                
+                int changes = updatePayload.update(company);
+                
+                if( changes > 0 ) {
+                    repository().updateCompany(company);
+                }
+                
+                return company;
+            }
+        };
+    }
+    
     @Override
     public void init(FacadeRouter router) {
         router.post("/", getCompanyCreateHandler());
         router.get("/", getCompaniesHandler());
         router.get("/:id", getCompanyViewHandler());
+        router.put("/:id", getCompanyUpdateHandler());
     }
+
 }
