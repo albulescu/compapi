@@ -1,5 +1,7 @@
 # ComApi ( Companies Api ) - [![Foo](https://travis-ci.org/albulescu/compapi.svg?branch=master)](https://travis-ci.org/albulescu/compapi)
 
+Deployed with Heroku at: https://comapi.herokuapp.com/v1/
+
 Small api example using Spark library.
 
 ## Requirements
@@ -27,7 +29,7 @@ mvn install
 ---
 ### - Create Company
 ```
-curl -X "POST" "http://localhost:4567/v1/companies" \
+curl -X "POST" "https://comapi.herokuapp.com/v1/companies" \
 	-d $'{
 	"name":"test2",
 	"address":"some address",
@@ -38,13 +40,13 @@ curl -X "POST" "http://localhost:4567/v1/companies" \
 
 ### - List companies
 ```
-curl -X "GET" "http://localhost:4567/v1/companies"
+curl -X "GET" "https://comapi.herokuapp.com/v1/companies"
 ```
 
 ### - Update companies
 Other fields can also be updated
 ```
-curl -X "PUT" "http://localhost:4567/v1/companies/1" \
+curl -X "PUT" "https://comapi.herokuapp.com/v1/companies/1" \
 	-d $'{
 	"name":"test2 new"
 }'
@@ -52,7 +54,7 @@ curl -X "PUT" "http://localhost:4567/v1/companies/1" \
 
 ### - Create user
 ```
-curl -X "POST" "http://localhost:4567/v1/users" \
+curl -X "POST" "https://comapi.herokuapp.com/v1/users" \
 	-d $'{
 	"name":"Cosmin Albulescu",
 	"email":"cosmin@albulescu.ro"
@@ -61,12 +63,12 @@ curl -X "POST" "http://localhost:4567/v1/users" \
 
 ### - List users
 ```
-curl -X "GET" "http://localhost:4567/v1/users"
+curl -X "GET" "https://comapi.herokuapp.com/v1/users"
 ```
 
 ### - Create employee
 ```
-curl -X "POST" "http://localhost:4567/v1/employees" \
+curl -X "POST" "https://comapi.herokuapp.com/v1/employees" \
 	-d $'{
 	"company":"1",
 	"user":"1",
