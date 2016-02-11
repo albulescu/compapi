@@ -1,5 +1,7 @@
 package comapi.api.users;
 
+import static spark.Spark.halt;
+
 import java.util.List;
 
 import comapi.Facade;
@@ -49,6 +51,12 @@ public class UsersFacade extends Facade {
                     ValidationException.throwViolations(violations);
                 }
 
+                User exists = repository().getUserByEmail(user.email);
+                
+                if( exists != null ) {
+                    halt(400, "User with this email already exists");
+                }
+                
                 repository().addUser(user);
                 return user;
             }

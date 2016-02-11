@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comapi.repository.Entity;
+import comapi.repository.EntityQuery;
 import comapi.repository.Repository;
 import comapi.repository.RepositoryStorage;
 
@@ -16,6 +17,18 @@ public class UsersRepository extends Repository {
         super(storage);
     }
 
+    public User getUserByEmail(String email) {
+        
+        EntityQuery query = new EntityQuery("email", email);
+        List<Entity> entities = getStorage().find(query);
+        
+        if(entities.size()>0){
+            return (User) entities.get(0);
+        }
+        
+        return null;
+    }
+    
     public List<User> getAll() {
         List<User> items = new ArrayList<User>();
         for (Entity e : getStorage().all()) {

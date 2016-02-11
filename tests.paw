@@ -178,7 +178,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">["{\\n\\t\\"name\\":\\"Cosmin Albulescu\\"\\n}"]</attribute>
+        <attribute name="body" type="string">["{\\n\\t\\"name\\":\\"Cosmin Albulescu\\",\\n\\t\\"email\\":\\"cosmin@albulescu.ro\\"\\n}"]</attribute>
         <attribute name="order" type="int64">3</attribute>
         <attribute name="name" type="string">Create User</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>

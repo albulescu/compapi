@@ -40,7 +40,7 @@ public class RepositoryMemoryStorage implements RepositoryStorage {
     public void set(Entity data) {
 
         if (data.id == null) {
-            data.id = storage.size() + "";
+            data.id = storage.size() + 1 + "";
             storage.add(data);
             return;
         }

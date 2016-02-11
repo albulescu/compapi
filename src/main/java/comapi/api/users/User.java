@@ -12,4 +12,8 @@ public class User extends Entity {
     @NotNull
     @NotEmpty
     public String name;
+    
+    @NotNull
+    @NotEmpty
+    public String email;
 }
