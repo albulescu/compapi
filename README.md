@@ -1,4 +1,5 @@
-# ComApi ( Companies Api ) - ![https://travis-ci.org/albulescu/compapi](https://travis-ci.org/albulescu/compapi.svg?branch=master)
+# ComApi ( Companies Api ) - [![Foo](https://travis-ci.org/albulescu/compapi.svg?branch=master)](https://travis-ci.org/albulescu/compapi)
+
 Small api example using Spark library.
 
 ## Requirements
