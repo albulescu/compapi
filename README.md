@@ -82,4 +82,4 @@ curl -X "POST" "https://comapi.herokuapp.com/v1/employees" \
 make test
 ```
 
-Or functional ones using Paw ( OSX ) - https://luckymarmot.com/paw
+Or functional ones using Paw ( OSX ) - https://luckymarmot.com/paw and open tests.paw file.
