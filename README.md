@@ -1,4 +1,4 @@
-# ComApi ( Companies Api )
+# ComApi ( Companies Api ) - ![Builds](https://travis-ci.org/albulescu/compapi.svg?branch=master)
 Small api example using Spark library.
 
 ## Requirements
