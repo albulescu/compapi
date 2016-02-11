@@ -136,7 +136,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">["{\\n\\t\\"name\\":\\"test2\\",\\n\\t\\"address\\":\\"some address\\",\\n\\t\\"city\\":\\"some city\\",\\n\\t\\"country\\":\\"some country\\"\\n}"]</attribute>
+        <attribute name="body" type="string"></attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">Get companies</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
@@ -152,7 +152,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">["{\\n\\t\\"name\\":\\"test2\\",\\n\\t\\"address\\":\\"some address\\",\\n\\t\\"city\\":\\"some city\\",\\n\\t\\"country\\":\\"some country\\"\\n}"]</attribute>
+        <attribute name="body" type="string"></attribute>
         <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">List Users</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
