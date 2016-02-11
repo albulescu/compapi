@@ -34,17 +34,33 @@ public class Application {
             }
         });
         
-        di.mapSingleton("repository.companies", di1 -> new CompanyRepository(
-                di1.get("storage").as(RepositoryStorage.class)
-        ));
+        di.mapSingleton("repository.companies", new Factory<CompanyRepository>() {
+            @Override
+            public CompanyRepository create(Di di) {
+                return new CompanyRepository(
+                        di.get("storage").as(RepositoryStorage.class)
+                );
+            }
+        });
 
-        di.mapSingleton("repository.users", di1 -> new UsersRepository(
-                di1.get("storage").as(RepositoryStorage.class)
-        ));
+        di.mapSingleton("repository.users", new Factory<UsersRepository>() {
+            @Override
+            public UsersRepository create(Di di) {
+                return new UsersRepository(
+                        di.get("storage").as(RepositoryStorage.class)
+                );
+            }
+        });
 
-        di.mapSingleton("repository.employees", di1 -> new EmployeeRepository(
-                di1.get("storage").as(RepositoryStorage.class)
-        ));
+        di.mapSingleton("repository.employees", new Factory<EmployeeRepository>() {
+            @Override
+            public EmployeeRepository create(Di di) {
+                return new EmployeeRepository(
+                        di.get("storage").as(RepositoryStorage.class)
+                );
+            }
+        });
+
         
         
         /**

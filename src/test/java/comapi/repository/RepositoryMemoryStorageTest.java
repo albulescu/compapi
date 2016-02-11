@@ -12,9 +12,9 @@ public class RepositoryMemoryStorageTest {
         Entity entity = new Entity();
         assertEquals(null, entity.id);
         storage.save(entity);
-        assertEquals("0", entity.id);
+        assertEquals("1", entity.id);
         storage.save(new Entity());
-        assertEquals("1", storage.get("1").id);
+        assertEquals("2", storage.get("2").id);
     }
 
 }

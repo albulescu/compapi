@@ -1,7 +1,6 @@
 package comapi;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 /**
  * Dependency Injector
