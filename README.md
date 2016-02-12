@@ -79,7 +79,7 @@ curl -X "POST" "https://comapi.herokuapp.com/v1/employees" \
 ## Testing
 ---
 ```
-make test
+mvn test
 ```
 
 Or functional ones using Paw ( OSX ) - https://luckymarmot.com/paw and open tests.paw file.
